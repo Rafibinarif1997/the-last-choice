@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Last Choice — Prototype</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="noise"></div>
+
+<header class="topbar">
+  <a class="brand" href="index.html"><span>THE LAST</span><b>CHOICE</b></a>
+  <nav>
+    <a href="#archive">Archive</a>
+    <a href="#how">How it works</a>
+  </nav>
+  <button class="reset small" id="resetBtn">RESET DEMO</button>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">SEASON 0 · INTERACTIVE COLLECTIBLE</p>
+    <h1>Every story has<br><em>a last choice.</em></h1>
+    <p class="lead">Choose an unfinished artifact. Make decisions. Watch it evolve. Every path changes what it can become.</p>
+    <a class="cta" href="#archive">ENTER THE ARCHIVE <span>↓</span></a>
+  </div>
+  <div class="hero-art" id="heroArt">
+    <div class="scan"></div>
+    <div class="artifact-card">
+      <div class="artifact-top"><span>UNKNOWN</span><span>#017</span></div>
+      <div class="artifact-visual mini-visual" data-nft="17">
+        <div class="orb"></div><div class="core"></div><div class="orbit o1"></div><div class="orbit o2"></div>
+      </div>
+      <div class="artifact-bottom"><span>MEMORY 00</span><span>UNFINISHED</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="archive" class="section">
+  <div class="section-head">
+    <div><p class="eyebrow">01 / ARCHIVE</p><h2>Choose a story.</h2></div>
+    <p>Three prototype artifacts. Each has a different starting seed and its own path.</p>
+  </div>
+  <div class="archive" id="archiveGrid"></div>
+</section>
+
+<section id="lab" class="section lab hidden">
+  <div class="section-head">
+    <div><p class="eyebrow">02 / THE CHOICE ENGINE</p><h2 id="labTitle">UNKNOWN #017</h2></div>
+    <p id="labSubtitle">This story is not finished.</p>
+  </div>
+
+  <div class="lab-grid">
+    <div class="large-art-panel">
+      <div class="artifact-top"><span id="stateLabel">UNKNOWN</span><span id="stateId">#017</span></div>
+      <div class="large-visual" id="largeVisual"></div>
+      <div class="artifact-bottom"><span id="memoryLabel">MEMORY 0</span><span id="formLabel">UNFINISHED</span></div>
+    </div>
+
+    <div class="choice-panel">
+      <div class="progress-row">
+        <span id="choiceCounter">CHOICE 01 / 05</span>
+        <span id="pathRarity">PATH: UNSET</span>
+      </div>
+      <div class="progress"><i id="progressBar"></i></div>
+      <h3 id="question">What should this artifact remember?</h3>
+      <div id="choices" class="choices"></div>
+      <p class="warning">Your choice changes this story. Previous paths cannot be restored.</p>
+      <button class="secondary" id="backArchive">← BACK TO ARCHIVE</button>
+    </div>
+  </div>
+
+  <div class="history-wrap">
+    <div class="history-head"><h3>STORY HISTORY</h3><span id="historyCount">0 decisions</span></div>
+    <div id="history" class="history"></div>
+  </div>
+</section>
+
+<section id="final" class="section final hidden">
+  <div class="final-box">
+    <p class="eyebrow">STORY COMPLETE</p>
+    <h2 id="finalTitle">THE LAST MEMORY</h2>
+    <p id="finalText"></p>
+    <div class="final-stats" id="finalStats"></div>
+    <button class="cta" id="againBtn">CHOOSE ANOTHER STORY</button>
+  </div>
+</section>
+
+<section id="how" class="section how">
+  <div class="section-head"><div><p class="eyebrow">03 / THE IDEA</p><h2>Ownership becomes a story.</h2></div></div>
+  <div class="steps">
+    <article><span>01</span><h3>Choose</h3><p>Pick an unfinished artifact from the archive.</p></article>
+    <article><span>02</span><h3>Decide</h3><p>Each choice permanently closes other paths in this prototype.</p></article>
+    <article><span>03</span><h3>Evolve</h3><p>The visual identity changes as the story progresses.</p></article>
+    <article><span>04</span><h3>Reveal</h3><p>After the final decision, the artifact gets its final form.</p></article>
+  </div>
+</section>
+</main>
+
+<footer><span>THE LAST CHOICE · PROTOTYPE</span><span>UNOFFICIAL EXPERIMENT · NOT A MINT</span></footer>
+<script src="app.js"></script>
+</body>
+</html>
