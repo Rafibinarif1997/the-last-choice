@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KEY404 // LIVE AIRDROP TRACKER</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="scanlines"></div>
+<div class="boot" id="boot"><div>KEY404 AIRDROP TERMINAL v2.0</div><div>LIVE REGISTRY ........ CONNECTING</div><div>NO MOCK DATA ........ ENFORCED</div><div>INITIALIZING ........ <span id="pct">0%</span></div></div>
+<div class="app hidden" id="app">
+<header><div class="brand"><span class="led"></span><b>KEY404</b><small>LIVE AIRDROP TRACKER</small></div><div class="head-right"><span id="apiState" class="status offline">● OFFLINE</span><span id="clock"></span></div></header>
+<section class="top panel">
+  <div><div class="eyebrow">READ-ONLY // LIVE EXTERNAL REGISTRY</div><h1>AIRDROP<br><span>TRACKER</span></h1><p>Real-time airdrop registry. No demo campaigns. No invented deadlines. Save campaigns locally and open the published source.</p></div>
+  <div class="terminal"><div>&gt; source: three.ws</div><div>&gt; endpoint: /api/crypto/airdrops</div><div>&gt; mode: LIVE / KEYLESS</div><div>&gt; refresh: <span id="lastRefresh">—</span></div></div>
+</section>
+<section class="stats grid4"><div class="stat"><small>TRACKED</small><strong id="total">—</strong></div><div class="stat"><small>QUALIFIED</small><strong id="qualified">—</strong></div><div class="stat"><small>IN PROGRESS</small><strong id="progress">—</strong></div><div class="stat"><small>WATCHLIST</small><strong id="watchCount">0</strong></div></section>
+<section class="panel controls">
+ <div class="search"><input id="search" placeholder="Search project, chain, category..." autocomplete="off"><button id="refresh" class="primary">↻ REFRESH LIVE DATA</button></div>
+ <div class="filters"><div class="tabs"><button data-status="all" class="active">ALL</button><button data-status="active">ACTIVE</button><button data-status="claimable">CLAIMABLE</button><button data-status="upcoming">UPCOMING</button><button data-status="watched">WATCHLIST</button></div><select id="chain"><option value="all">ALL CHAINS</option></select><select id="sort"><option value="updated">UPDATED</option><option value="name">NAME</option><option value="score">SCORE</option><option value="deadline">DEADLINE</option></select></div>
+</section>
+<section id="notice" class="notice hidden"></section>
+<section id="list" class="list"></section>
+<footer>KEY404 // LIVE DATA ONLY // SOURCE: three.ws // This tracker does not guarantee eligibility, rewards or safety.</footer>
+</div>
+<div class="modal hidden" id="modal"><div class="modal-card"><button class="close" id="close">×</button><div id="detail"></div></div></div>
+<script src="app.js"></script>
+</body></html>
