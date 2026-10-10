@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070b12">
+  <meta name="description" content="TOKEN RADAR — Robinhood Chain token intelligence and risk scanner.">
+  <title>TOKEN RADAR — Token Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Token Radar home">
+      <span class="brand-mark"><i></i><i></i><i></i><i></i></span>
+      <span>TOKEN<span class="brand-light">RADAR</span><small>ROBINHOOD CHAIN INTELLIGENCE</small></span>
+    </a>
+    <div class="top-right"><span class="network-dot"></span><span>ROBINHOOD CHAIN</span><span class="chain-id">4663</span></div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> ON-CHAIN TOKEN INTELLIGENCE</div>
+      <h1>Know the token<br><em>before the trade.</em></h1>
+      <p class="hero-copy">One contract address. A full token dossier, market context, and transparent risk checks.</p>
+      <form id="scan-form" class="search-panel">
+        <label for="contract-address">CONTRACT ADDRESS</label>
+        <div class="search-row">
+          <span class="search-icon">⌕</span>
+          <input id="contract-address" name="address" autocomplete="off" spellcheck="false" placeholder="0x..." maxlength="42" required>
+          <button id="scan-button" type="submit"><span class="button-label">SCAN TOKEN</span><span class="button-arrow">↗</span></button>
+        </div>
+        <div class="search-foot"><span>READ-ONLY ANALYSIS</span><span>NO WALLET CONNECTION REQUIRED</span><span>CHAIN ID 4663</span></div>
+      </form>
+      <div class="sample-row">Try reference token <button id="sample-token" type="button">PONS · 0x39dB…C4571</button></div>
+    </section>
+
+    <section id="status-panel" class="status-panel hidden" aria-live="polite">
+      <div class="spinner" id="status-spinner"></div><div><strong id="status-title">Scanning contract…</strong><p id="status-message">Reading on-chain state and checking available data sources.</p></div>
+    </section>
+
+    <section id="error-panel" class="error-panel hidden" aria-live="polite">
+      <span class="error-icon">!</span><div><strong id="error-title">Scan failed</strong><p id="error-message"></p></div>
+    </section>
+
+    <section id="results" class="results hidden">
+      <div class="result-heading">
+        <div><div class="eyebrow">TOKEN DOSSIER <span id="scan-time"></span></div><h2 id="token-title">Token</h2><p id="token-subtitle" class="muted mono"></p></div>
+        <a id="explorer-link" class="outline-link" target="_blank" rel="noopener noreferrer">VIEW ON EXPLORER ↗</a>
+      </div>
+      <div class="summary-grid">
+        <article class="score-card panel">
+          <div class="card-topline"><span>RADAR SCORE</span><span id="score-label" class="status-chip">ANALYZING</span></div>
+          <div class="score-wrap"><div id="score-ring" class="score-ring"><div><strong id="score-value">—</strong><small>/100</small></div></div><div class="score-copy"><strong id="verdict-title">Awaiting data</strong><p id="verdict-copy">A heuristic summary, not a prediction of profit.</p></div></div>
+          <div class="score-meter"><span id="score-meter-fill"></span></div>
+          <p class="tiny muted">The score is a data-quality/risk heuristic. It is not a probability of a profitable trade.</p>
+        </article>
+        <article class="metric-card panel"><span class="metric-label">PRICE (USD)</span><strong id="metric-price">—</strong><small id="metric-price-source">No verified quote yet</small></article>
+        <article class="metric-card panel"><span class="metric-label">LIQUIDITY (USD)</span><strong id="metric-liquidity">—</strong><small id="metric-liquidity-source">Source-dependent</small></article>
+        <article class="metric-card panel"><span class="metric-label">24H VOLUME</span><strong id="metric-volume">—</strong><small id="metric-volume-source">Source-dependent</small></article>
+      </div>
+
+      <div class="content-grid">
+        <article class="panel section-panel">
+          <div class="section-title"><span class="section-index">01</span><h3>Token fundamentals</h3><span id="source-badge" class="source-badge">ON-CHAIN</span></div>
+          <div class="data-grid">
+            <div class="data-item"><span>Name</span><strong id="field-name">—</strong></div>
+            <div class="data-item"><span>Symbol</span><strong id="field-symbol">—</strong></div>
+            <div class="data-item"><span>Decimals</span><strong id="field-decimals">—</strong></div>
+            <div class="data-item"><span>Total supply</span><strong id="field-supply">—</strong></div>
+            <div class="data-item"><span>Market cap</span><strong id="field-marketcap">—</strong></div>
+            <div class="data-item"><span>FDV</span><strong id="field-fdv">—</strong></div>
+            <div class="data-item"><span>Token standard</span><strong id="field-standard">ERC-20 compatible</strong></div>
+            <div class="data-item"><span>Contract verification</span><strong id="field-verified">Unknown</strong></div>
+            <div class="data-item"><span>Creator / deployer</span><strong id="field-deployer" class="mono break">Not exposed</strong></div>
+            <div class="data-item"><span>Owner getter</span><strong id="field-owner" class="mono break">Not exposed</strong></div>
+            <div class="data-item"><span>Launch protocol</span><strong id="field-protocol">Unknown</strong></div>
+            <div class="data-item"><span>Liquidity pool</span><strong id="field-pool" class="mono break">Not detected</strong></div>
+            <div class="data-item"><span>Bonding curve</span><strong id="field-curve" class="mono break">Not detected</strong></div>
+            <div class="data-item"><span>Pair / quote asset</span><strong id="field-pair" class="mono break">Unknown</strong></div>
+            <div class="data-item"><span>Creator tax</span><strong id="field-tax">Unknown</strong></div>
+            <div class="data-item"><span>Graduation</span><strong id="field-graduation">Unknown</strong></div>
+            <div class="data-item wide-item"><span>Token description</span><strong id="field-description" class="description-text">No on-chain description returned</strong></div>
+          </div>
+          <div class="contract-line"><span>CONTRACT</span><code id="field-address"></code><button id="copy-address" type="button" class="copy-button">COPY</button></div>
+          <div id="social-links" class="social-links"></div>
+        </article>
+
+        <article class="panel section-panel">
+          <div class="section-title"><span class="section-index">02</span><h3>Risk analysis</h3><span id="risk-count" class="risk-count">0 FLAGS</span></div>
+          <div id="risk-list" class="risk-list"></div>
+          <div class="risk-note"><strong>Important</strong><p>Automated checks can miss malicious logic, proxy upgrades, sell restrictions, hidden taxes, or liquidity changes. Never treat this page as a security audit.</p></div>
+        </article>
+      </div>
+
+      <div class="content-grid lower-grid">
+        <article class="panel section-panel">
+          <div class="section-title"><span class="section-index">03</span><h3>Market snapshot</h3></div>
+          <div class="data-grid">
+            <div class="data-item"><span>24h buys</span><strong id="field-buys">—</strong></div>
+            <div class="data-item"><span>24h sells</span><strong id="field-sells">—</strong></div>
+            <div class="data-item"><span>Buy / sell ratio</span><strong id="field-flow">—</strong></div>
+            <div class="data-item"><span>Pool fee</span><strong id="field-fee">—</strong></div>
+            <div class="data-item"><span>Top-holder concentration</span><strong id="field-concentration">Unknown</strong></div>
+            <div class="data-item"><span>Holder data</span><strong id="field-holders">Unavailable</strong></div>
+            <div class="data-item"><span>Pons curve progress</span><strong id="field-progress">Unknown</strong></div>
+            <div class="data-item"><span>Curve quote reserve</span><strong id="field-quote-reserve">Unknown</strong></div>
+          </div>
+          <p id="market-disclaimer" class="tiny muted">Market data is provider-dependent and may be delayed or unavailable.</p>
+        </article>
+        <article class="panel section-panel">
+          <div class="section-title"><span class="section-index">04</span><h3>Why this score?</h3></div>
+          <div id="score-reasons" class="reason-list"></div>
+          <div class="method-note"><span class="mini-dot"></span><span>Insufficient or missing data is shown as unknown, never silently treated as safe.</span></div>
+        </article>
+      </div>
+      <div class="result-footer"><span id="data-sources">Sources: Robinhood RPC · Blockscout · market-data fallback</span><span id="scan-id" class="mono"></span></div>
+    </section>
+
+    <section id="empty-state" class="empty-state">
+      <div class="empty-graphic"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="core"><span>TR</span></div><i class="node n1"></i><i class="node n2"></i><i class="node n3"></i></div>
+      <h2>One address. More context.</h2><p>Submit a Robinhood Chain token contract to inspect its on-chain metadata, market data, protocol signals, and known risks.</p>
+      <div class="empty-features"><span>01 / TOKEN DATA</span><span>02 / MARKET SNAPSHOT</span><span>03 / RISK CHECKS</span></div>
+    </section>
+  </main>
+
+  <footer class="footer"><span>© TOKEN RADAR · INDEPENDENT ANALYTICS</span><span>NOT FINANCIAL ADVICE · NO PROFIT GUARANTEE</span></footer>
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
